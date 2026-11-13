@@ -23,6 +23,11 @@
   var MQLS = GATES.map(function (q) { return window.matchMedia(q); });
   var RM = window.matchMedia("(prefers-reduced-motion: reduce)");
   var gated = function () { return MQLS.some(function (m) { return m.matches; }); };
+  // Portada fija solo con movimiento reducido o teléfono apaisado. Igual que en styles.css.
+  var SHORT = window.matchMedia("(orientation: landscape) and (pointer: coarse) and (max-height: 560px)");
+  var isStatic = function () { return RM.matches || SHORT.matches; };
+  // Modo ligero (teléfonos): frases ligadas al scroll, video en reproducción continua.
+  var isLite = function () { return gated() && !isStatic(); };
 
   $("#year").textContent = new Date().getFullYear();
 
@@ -165,8 +170,28 @@
       });
     });
   }
+  var liteVideo = false;
+  function playLite() {
+    if (!liteVideo || !scrubOn || !heroOnScreen || document.hidden) return;
+    var p = video.play();
+    if (p && p.catch) p.catch(function () { /* ahorro de batería: queda la imagen */ });
+  }
   function initHeroOnce() {
     if (heroInit) return; heroInit = true;
+    if (isLite()) {
+      liteVideo = true;
+      $("#poster").style.backgroundImage = "url('assets/img/hero-mobile-first.jpg')";
+      ring.style.display = "none";
+      video.loop = true; video.muted = true; video.defaultMuted = true;
+      video.setAttribute("muted", ""); video.setAttribute("playsinline", ""); video.setAttribute("webkit-playsinline", "");
+      video.preload = "auto";
+      video.addEventListener("playing", function () { stage.classList.add("video-ready"); }, { once: true });
+      video.src = "assets/hero-mobile.mp4";
+      loadT0 = performance.now();
+      playLite();
+      document.addEventListener("visibilitychange", function () { if (document.hidden) video.pause(); else playLite(); });
+      return;
+    }
     $("#poster").style.backgroundImage = "url('" + POSTER + "')";
     var im = new Image(); im.onload = startBlobFetch; im.onerror = startBlobFetch; im.src = POSTER;
     setTimeout(startBlobFetch, 4000);
@@ -185,7 +210,7 @@
       if (loadK < 1) { loadK = clamp((now - loadT0 - 250) / 1300, 0, 1); loadK = 1 - Math.pow(1 - loadK, 3); busy = true; }
       shown += (target - shown) * e;
       if (Math.abs(target - shown) < 0.0004) shown = target; else busy = true;
-      if (heroOnScreen) { requestSeek(shown * (video.duration || 0)); updateBands(shown); updateHeroExtras(shown, now); }
+      if (heroOnScreen) { if (!liteVideo) requestSeek(shown * (video.duration || 0)); updateBands(shown); updateHeroExtras(shown, now); }
 
       if (procMax > 0) {
         procShown += (procTarget - procShown) * e;
@@ -222,7 +247,10 @@
     kick();
   }
   window.addEventListener("scroll", onScroll, { passive: true });
-  new IntersectionObserver(function (e) { heroOnScreen = e[0].isIntersecting; if (heroOnScreen) kick(); }).observe(hero);
+  new IntersectionObserver(function (e) {
+    heroOnScreen = e[0].isIntersecting; if (heroOnScreen) kick();
+    if (liteVideo) { if (heroOnScreen) playLite(); else video.pause(); }
+  }).observe(hero);
   var pIO = new IntersectionObserver(function (es) {
     es.forEach(function (en) { parallax.forEach(function (P) { if (P.el.parentNode === en.target) P.on = en.isIntersecting && !RM.matches; }); });
     kick();
@@ -243,8 +271,13 @@
     if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; lastTick = 0; }
     track.style.transform = ""; layoutProcess();
   }
-  function applyHeroMode() { if (gated()) disableScrub(); else enableScrub(); onScroll(); }
+  function applyHeroMode() {
+    if (isStatic()) { disableScrub(); if (liteVideo) video.pause(); }
+    else { enableScrub(); layoutProcess(); playLite(); }
+    onScroll();
+  }
   MQLS.forEach(function (m) { m.addEventListener("change", applyHeroMode); });
+  SHORT.addEventListener("change", applyHeroMode);
   var rz; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { layoutProcess(); onScroll(); }, 150); });
   window.addEventListener("load", function () { layoutProcess(); onScroll(); });
 

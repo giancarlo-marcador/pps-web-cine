@@ -404,9 +404,6 @@ body.paused *, body.paused *::before, body.paused *::after { animation-play-stat
 
 /* Portada fija y proceso en carrusel: las cinco condiciones, idénticas a las de main.js */
 @media (max-width: 720px), (orientation: portrait) and (max-width: 1024px), (orientation: portrait) and (pointer: coarse), (orientation: landscape) and (pointer: coarse) and (max-height: 560px), (prefers-reduced-motion: reduce) {
-  .hero { height: auto; }
-  .stage { display: none; }
-  .hero-static { display: grid; }
   .process { height: auto !important; padding: var(--section) 0 calc(var(--section) * .6); }
   .process__pin { position: static; height: auto; display: block; padding: 0; overflow: visible; }
   .process__head { margin-bottom: 24px; }
@@ -418,6 +415,25 @@ body.paused *, body.paused *::before, body.paused *::after { animation-play-stat
   .panel__img { aspect-ratio: 4 / 3; }
   .panel__img img { transform: none; }
   .process__rail { display: none; }
+}
+/* Portada fija: solo movimiento reducido o teléfono apaisado. Igual que isStatic() en main.js */
+@media (prefers-reduced-motion: reduce), (orientation: landscape) and (pointer: coarse) and (max-height: 560px) {
+  .hero { height: auto !important; }
+  .stage { display: none; }
+  .hero-static { display: grid; }
+}
+/* Portada en teléfonos: mismas frases ligadas al scroll, compuestas para pantalla vertical */
+@media (max-width: 720px) {
+  .hero { height: 460vh; height: 460lvh; }
+  .stage { height: 100vh; height: 100lvh; }
+  .weld img { object-position: 46% 30%; }
+  .scrim { background: linear-gradient(rgba(7, 11, 17, .58), rgba(7, 11, 17, .05) 26%, rgba(7, 11, 17, .32) 52%, rgba(7, 11, 17, .9) 100%); }
+  .band--1, .band--2, .band--3, .band--4 { left: var(--gutter); right: var(--gutter); top: auto; bottom: calc(100lvh - 100svh + 104px); width: auto; translate: none; padding-left: 0; justify-items: start; text-align: left; }
+  .band .mega, .band--2 .mega, .band--3 .mega, .band--4 .mega { max-width: none; }
+  .band__sub { font-size: 16.5px; max-width: 34ch; }
+  .hud { top: 74px; right: 12px; }
+  .cue { bottom: calc(100lvh - 100svh + 16px); }
+  .cue i { height: 26px; }
 }
 @media (pointer: coarse) {
   .textlink, .people a, .footer__grid div > a { min-height: 44px; display: inline-flex; align-items: center; justify-content: flex-start; }
