@@ -1,17 +1,18 @@
-/* Medición con Google Analytics 4. Solo se activa si config.js trae un ID de medición (G-XXXXXXXXXX). */
+/* Medición con Google Analytics 4. Solo se activa si config.js trae un ID de medición (G-XXXXXXXXXX) o una etiqueta de Google (GTM-XXXXXXX). */
 (function () {
   "use strict";
   var id = (window.PPS_CONFIG || {}).gaId;
-  if (!id || !/^G-[A-Z0-9]+$/.test(id)) return;
+  if (!id || !/^(G|GTM)-[A-Z0-9]+$/.test(id)) return;
+  var isTag = id.indexOf("GTM-") === 0;
   var s = document.createElement("script");
   s.async = true;
-  s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+  s.src = "https://www.googletagmanager.com/" + (isTag ? "gtm.js" : "gtag/js") + "?id=" + encodeURIComponent(id);
   document.head.appendChild(s);
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
   window.gtag = gtag;
   gtag("js", new Date());
-  gtag("config", id);
+  if (!isTag) gtag("config", id);
 
   document.addEventListener("click", function (e) {
     var el = e.target.closest ? e.target.closest("a, button") : null;
