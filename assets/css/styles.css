@@ -74,15 +74,25 @@ main:focus { outline: 0; }
 /* Cordón de soldadura */
 .seam { position: fixed; left: clamp(10px, 1.6vw, 26px); top: 0; bottom: 0; width: 2px; z-index: 30; pointer-events: none; background: var(--line-d); }
 .seam__bead { position: absolute; inset: 0; background: linear-gradient(var(--blue-deep), var(--blue-bright)); transform-origin: top; transform: scaleY(var(--pg, 0)); }
-.seam__arc { position: absolute; left: -3px; top: calc(var(--pg, 0) * 100%); margin-top: -4px; width: 8px; height: 8px; border-radius: 50%; background: radial-gradient(circle, #fff 0 38%, #e4f0ff 62%, #a9c8f5 100%); box-shadow: 0 0 0 1px rgba(255, 176, 104, .28), 0 0 6px 2px rgba(255, 255, 255, .85), 0 0 16px 5px rgba(170, 205, 255, .55), 0 0 38px 12px rgba(110, 160, 235, .22); animation: arc-core 2.9s linear infinite; }
-.seam__arc::after { content: ""; position: absolute; inset: -22px; border-radius: 50%; background: radial-gradient(circle, rgba(225, 238, 255, .7), rgba(150, 188, 240, .26) 38%, rgba(120, 165, 230, .08) 58%, transparent 72%); animation: arc 3.7s ease-in-out infinite; animation-delay: -1.3s; }
-.seam__smoke { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
-.seam__smoke b { position: absolute; left: -9px; top: -20px; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle, rgba(196, 208, 226, .5), rgba(170, 184, 206, .2) 48%, transparent 72%); filter: blur(3px); opacity: 0; animation: smoke 4.4s linear infinite; will-change: transform, opacity; }
-.seam__smoke b:nth-child(2) { animation-duration: 5.3s; animation-delay: -1.9s; --dx: 16px; }
-.seam__smoke b:nth-child(3) { animation-duration: 6.1s; animation-delay: -3.6s; --dx: 5px; }
+.seam__arc { position: absolute; left: 1px; top: calc(var(--pg, 0) * 100%); width: 0; height: 0; }
+.seam__arc > i, .seam__smoke b, .seam__spark b { position: absolute; }
+.seam__core { left: -5.5px; top: -5.5px; width: 11px; height: 11px; border-radius: 50%; background: radial-gradient(circle, #fff 0 40%, #ffe9cc 64%, #ff9d4d 100%); box-shadow: 0 0 8px 3px rgba(255, 250, 240, .95), 0 0 22px 8px rgba(255, 168, 84, .62), 0 0 52px 18px rgba(255, 122, 26, .28); animation: arc-core 2.6s linear infinite; }
+.seam__arc::after { content: ""; position: absolute; left: -40px; top: -40px; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 232, 200, .62), rgba(255, 150, 70, .24) 36%, rgba(150, 188, 240, .1) 58%, transparent 72%); animation: arc 3.4s ease-in-out infinite; animation-delay: -1.3s; }
+.seam__tail { left: -2px; bottom: 0; width: 4px; height: 160px; border-radius: 2px; background: linear-gradient(to top, #fff3dc, #ffb066 10%, #ff7a1a 28%, rgba(214, 84, 30, .75) 50%, rgba(143, 180, 234, .5) 78%, rgba(143, 180, 234, 0)); box-shadow: 0 0 14px 2px rgba(255, 122, 26, .3); animation: arc-tail 3.3s ease-in-out infinite; }
+.seam__flare { left: -105px; top: -1px; width: 210px; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 214, 170, .22) 25%, #fff 50%, rgba(255, 214, 170, .22) 75%, transparent); animation: arc-flare 3.7s ease-in-out infinite; }
+.seam__flare--v { left: -1px; top: -42px; width: 2px; height: 84px; background: linear-gradient(transparent, rgba(255, 214, 170, .28) 25%, #fff 50%, rgba(255, 214, 170, .28) 75%, transparent); animation-delay: -.6s; }
+.seam__smoke b { left: -17px; top: -36px; width: 34px; height: 34px; border-radius: 50%; background: radial-gradient(circle, rgba(204, 214, 230, .66), rgba(172, 186, 208, .28) 48%, transparent 72%); filter: blur(5px); opacity: 0; animation: smoke 4.4s linear infinite; will-change: transform, opacity; }
+.seam__smoke b:nth-child(2) { animation-duration: 5.3s; animation-delay: -1.9s; --dx: 22px; }
+.seam__smoke b:nth-child(3) { animation-duration: 6.1s; animation-delay: -3.6s; --dx: 6px; }
+.seam__smoke b:nth-child(4) { animation-duration: 4.9s; animation-delay: -2.7s; --dx: 34px; }
+.seam__smoke b:nth-child(5) { animation-duration: 5.7s; animation-delay: -.9s; --dx: 14px; }
+.seam__spark b { left: -1.5px; top: -1.5px; width: 3px; height: 3px; border-radius: 50%; background: #ffd9a0; box-shadow: 0 0 6px 1px rgba(255, 160, 70, .9); opacity: 0; animation: spark var(--t, 1.3s) cubic-bezier(.2, .6, .4, 1) infinite; animation-delay: var(--d, 0s); }
 @keyframes arc { 0%, 100% { opacity: .5; transform: scale(.82); } 22% { opacity: .9; transform: scale(1.06); } 41% { opacity: .62; transform: scale(.9); } 63% { opacity: 1; transform: scale(1.16); } 82% { opacity: .7; transform: scale(.96); } }
-@keyframes arc-core { 0%, 100% { filter: brightness(1); transform: scale(1); } 9% { filter: brightness(1.22); transform: scale(1.1); } 17% { filter: brightness(.9); transform: scale(.94); } 36% { filter: brightness(1.14); transform: scale(1.05); } 52% { filter: brightness(.94); transform: scale(.97); } 71% { filter: brightness(1.26); transform: scale(1.12); } 86% { filter: brightness(.96); transform: scale(.98); } }
-@keyframes smoke { 0% { opacity: 0; transform: translate(0, 0) scale(.35); } 14% { opacity: .5; } 55% { opacity: .26; } 100% { opacity: 0; transform: translate(var(--dx, 10px), -92px) scale(2.5); } }
+@keyframes arc-core { 0%, 100% { filter: brightness(1); transform: scale(1); } 9% { filter: brightness(1.28); transform: scale(1.12); } 17% { filter: brightness(.9); transform: scale(.93); } 36% { filter: brightness(1.16); transform: scale(1.06); } 52% { filter: brightness(.93); transform: scale(.96); } 71% { filter: brightness(1.3); transform: scale(1.14); } 86% { filter: brightness(.96); transform: scale(.98); } }
+@keyframes arc-tail { 0%, 100% { opacity: .82; } 50% { opacity: 1; } }
+@keyframes arc-flare { 0%, 100% { opacity: .45; transform: scale(.7); } 30% { opacity: 1; transform: scale(1); } 55% { opacity: .6; transform: scale(.82); } 78% { opacity: .95; transform: scale(1.08); } }
+@keyframes smoke { 0% { opacity: 0; transform: translate(0, 0) scale(.35); } 14% { opacity: .78; } 55% { opacity: .4; } 100% { opacity: 0; transform: translate(var(--dx, 10px), -170px) scale(3.2); } }
+@keyframes spark { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 8% { opacity: 1; } 70% { opacity: .9; } 100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(.3); } }
 
 /* Tipografía */
 .mega { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(50px, 9vw, 164px); line-height: .9; letter-spacing: -.012em; text-wrap: balance; }
@@ -384,6 +394,8 @@ body.paused *, body.paused *::before, body.paused *::after { animation-play-stat
 /* ============ Responsive ============ */
 @media (max-width: 1100px) {
   .seam { left: 5px; background: transparent; }
+  .seam__flare { left: -60px; width: 120px; }
+  .seam__flare--v { left: -1px; width: 2px; }
   .seam__bead { opacity: .55; }
   .nav__links { display: none; }
   .nav__cta { margin-left: auto; }

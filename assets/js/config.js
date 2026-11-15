@@ -7,6 +7,9 @@ window.PPS_CONFIG = {
   // Pendiente de confirmar con el cliente qué número debe recibir los leads.
   salesWhatsApp: "",
 
+  // ID de medición de Google Analytics 4 (formato G-XXXXXXXXXX). Vacío = no se mide nada.
+  gaId: "",
+
   // Opcional: URL de un webhook (CRM, GoHighLevel, etc.) que reciba la solicitud en JSON por POST.
   leadWebhook: "",
 
