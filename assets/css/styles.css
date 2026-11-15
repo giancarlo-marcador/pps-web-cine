@@ -74,9 +74,15 @@ main:focus { outline: 0; }
 /* Cordón de soldadura */
 .seam { position: fixed; left: clamp(10px, 1.6vw, 26px); top: 0; bottom: 0; width: 2px; z-index: 30; pointer-events: none; background: var(--line-d); }
 .seam__bead { position: absolute; inset: 0; background: linear-gradient(var(--blue-deep), var(--blue-bright)); transform-origin: top; transform: scaleY(var(--pg, 0)); }
-.seam__arc { position: absolute; left: -4px; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: var(--arc); transform: translateY(calc(var(--pg, 0) * 100vh)); }
-.seam__arc::after { content: ""; position: absolute; inset: -14px; border-radius: 50%; background: radial-gradient(circle, rgba(207, 228, 255, .75), rgba(143, 180, 234, .25) 45%, transparent 70%); animation: arc 4.2s ease-in-out infinite; animation-delay: -1.3s; }
-@keyframes arc { 0%, 100% { opacity: .55; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.15); } }
+.seam__arc { position: absolute; left: -3px; top: calc(var(--pg, 0) * 100%); margin-top: -4px; width: 8px; height: 8px; border-radius: 50%; background: radial-gradient(circle, #fff 0 38%, #e4f0ff 62%, #a9c8f5 100%); box-shadow: 0 0 0 1px rgba(255, 176, 104, .28), 0 0 6px 2px rgba(255, 255, 255, .85), 0 0 16px 5px rgba(170, 205, 255, .55), 0 0 38px 12px rgba(110, 160, 235, .22); animation: arc-core 2.9s linear infinite; }
+.seam__arc::after { content: ""; position: absolute; inset: -22px; border-radius: 50%; background: radial-gradient(circle, rgba(225, 238, 255, .7), rgba(150, 188, 240, .26) 38%, rgba(120, 165, 230, .08) 58%, transparent 72%); animation: arc 3.7s ease-in-out infinite; animation-delay: -1.3s; }
+.seam__smoke { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+.seam__smoke b { position: absolute; left: -9px; top: -20px; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle, rgba(196, 208, 226, .5), rgba(170, 184, 206, .2) 48%, transparent 72%); filter: blur(3px); opacity: 0; animation: smoke 4.4s linear infinite; will-change: transform, opacity; }
+.seam__smoke b:nth-child(2) { animation-duration: 5.3s; animation-delay: -1.9s; --dx: 16px; }
+.seam__smoke b:nth-child(3) { animation-duration: 6.1s; animation-delay: -3.6s; --dx: 5px; }
+@keyframes arc { 0%, 100% { opacity: .5; transform: scale(.82); } 22% { opacity: .9; transform: scale(1.06); } 41% { opacity: .62; transform: scale(.9); } 63% { opacity: 1; transform: scale(1.16); } 82% { opacity: .7; transform: scale(.96); } }
+@keyframes arc-core { 0%, 100% { filter: brightness(1); transform: scale(1); } 9% { filter: brightness(1.22); transform: scale(1.1); } 17% { filter: brightness(.9); transform: scale(.94); } 36% { filter: brightness(1.14); transform: scale(1.05); } 52% { filter: brightness(.94); transform: scale(.97); } 71% { filter: brightness(1.26); transform: scale(1.12); } 86% { filter: brightness(.96); transform: scale(.98); } }
+@keyframes smoke { 0% { opacity: 0; transform: translate(0, 0) scale(.35); } 14% { opacity: .5; } 55% { opacity: .26; } 100% { opacity: 0; transform: translate(var(--dx, 10px), -92px) scale(2.5); } }
 
 /* Tipografía */
 .mega { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(50px, 9vw, 164px); line-height: .9; letter-spacing: -.012em; text-wrap: balance; }
@@ -347,9 +353,38 @@ main:focus { outline: 0; }
 .rv.in.done { transition-delay: 0s !important; }
 body.paused *, body.paused *::before, body.paused *::after { animation-play-state: paused !important; }
 
+/* Nosotros */
+.about { padding: 0 0 var(--section); }
+.about__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px clamp(28px, 6vw, 110px); align-items: end; margin-bottom: clamp(32px, 4.5vw, 64px); }
+.about__head .h2 { max-width: 13ch; }
+.about__intro { display: grid; gap: 14px; color: var(--steel-200); font-size: clamp(16px, 1.2vw, 18.5px); max-width: 58ch; }
+.about__cards { display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: clamp(8px, 1vw, 14px); }
+.acard { padding: clamp(22px, 2.4vw, 36px); border-radius: var(--r-xl); background: var(--steel-900); box-shadow: inset 0 0 0 1px var(--line-d); display: grid; gap: 14px; align-content: start; }
+.acard h3, .about__extra h3 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(26px, 2.3vw, 38px); line-height: 1; }
+.acard p, .acard li { color: var(--steel-200); font-size: 15.5px; }
+.acard ul { list-style: none; display: grid; gap: 12px; }
+.acard li b { color: var(--white); font-weight: 600; }
+.about__extra { margin-top: clamp(28px, 4vw, 56px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 18px clamp(28px, 6vw, 110px); align-items: start; }
+.about__extra h3 { font-size: clamp(24px, 2vw, 32px); max-width: 12ch; }
+.about__extra ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.about__extra li { padding: 10px 16px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line-d-2); font-size: 14.5px; color: var(--steel-200); }
+.policy { margin-top: clamp(28px, 4vw, 56px); border-block: 1px solid var(--line-d-2); }
+.policy summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; font-size: clamp(18px, 1.5vw, 22px); font-weight: 500; transition: color .3s var(--ease); }
+.policy summary::-webkit-details-marker { display: none; }
+.policy summary::after { content: "+"; font-family: var(--mono); font-size: 22px; color: var(--blue-bright); transition: transform .4s var(--ease); }
+.policy[open] summary::after { transform: rotate(45deg); }
+.policy summary:hover { color: var(--blue-bright); }
+.policy__body { display: grid; gap: 16px; padding: 0 0 28px; color: var(--steel-200); font-size: 15.5px; max-width: 78ch; }
+.policy__body ol { display: grid; gap: 10px; padding-left: 22px; }
+.policy__body li::marker { font-family: var(--mono); color: var(--blue-bright); }
+@media (max-width: 900px) {
+  .about__head, .about__cards, .about__extra { grid-template-columns: 1fr; }
+}
+
 /* ============ Responsive ============ */
 @media (max-width: 1100px) {
-  .seam { display: none; }
+  .seam { left: 5px; background: transparent; }
+  .seam__bead { opacity: .55; }
   .nav__links { display: none; }
   .nav__cta { margin-left: auto; }
   .nav__burger { display: block; }

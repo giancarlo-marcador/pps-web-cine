@@ -24,14 +24,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/img/hero-soldador.webp">
-<link rel="stylesheet" href="assets/css/styles.css?v=4">
+<link rel="stylesheet" href="assets/css/styles.css?v=6">
 </head>
 <body>
 <a class="skip" href="#main">Saltar al contenido</a>
 <div class="env" aria-hidden="true"></div>
 
 <!-- Cordón de soldadura: avanza con el scroll de toda la página -->
-<div class="seam" aria-hidden="true"><i class="seam__bead"></i><i class="seam__arc"></i></div>
+<div class="seam" aria-hidden="true"><i class="seam__bead"></i><i class="seam__arc"><i class="seam__smoke"><b></b><b></b><b></b></i></i></div>
 
 <nav class="nav" id="nav" aria-label="Principal">
   <a class="nav__logo" href="#inicio" aria-label="PPS, inicio"><img src="assets/img/logo-pps.png" alt="PPS · Proyectos Productos Soluciones" width="739" height="332"></a>
@@ -41,6 +41,7 @@
     <a href="#fabricamos">Qué fabricamos</a>
     <a href="#proyectos">Proyectos</a>
     <a href="#planta">Planta</a>
+    <a href="#nosotros">Nosotros</a>
   </div>
   <a class="btn btn--spark btn--sm nav__cta" href="#agenda"><span>Agendar reunión</span><i class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></i></a>
   <button class="nav__burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
@@ -51,6 +52,7 @@
   <a href="#fabricamos">Qué fabricamos</a>
   <a href="#proyectos">Proyectos</a>
   <a href="#planta">Planta</a>
+    <a href="#nosotros">Nosotros</a>
   <a href="#preguntas">Preguntas</a>
   <a class="menu__cta" href="#agenda">Agendar reunión</a>
 </div>
@@ -235,11 +237,63 @@
   </div>
 </section>
 
+<!-- ============ NOSOTROS ============ -->
+<section class="about" id="nosotros">
+  <div class="wrap">
+    <div class="about__head">
+      <div>
+        <p class="joint rv"><b>J-07</b>Nosotros</p>
+        <h2 class="h2 rv">Una planta creada para fabricar spools.</h2>
+      </div>
+      <div class="about__intro">
+        <p class="rv">PPS nació con ingeniería, equipamiento y una distribución de planta pensados para la prefabricación de tuberías. Atendemos a Minería, Oil &amp; Gas, Refinería y Energía, con aceros al carbono, inoxidables y aleados.</p>
+        <p class="rv">Nuestros accionistas, socios fundadores y gestores cuentan con amplia experiencia en Ingeniería y Construcción y en Metalmecánica. Por eso ofrecemos, de forma complementaria, asesoría, ingeniería, supervisión en obra y acompañamiento, con una visión integral de las necesidades y prioridades de cada proyecto.</p>
+      </div>
+    </div>
+    <div class="about__cards">
+      <article class="acard rv"><h3>Misión</h3><p>Contribuir al desarrollo del país, brindando a nuestros clientes productos y servicios de alta calidad, desarrollados con responsabilidad social y sostenibilidad ambiental y económica.</p></article>
+      <article class="acard rv"><h3>Visión</h3><p>Ser la empresa metalmecánica líder a nivel nacional y un referente regional, por nuestra capacidad productiva y por la alta calidad de nuestros productos y servicios.</p></article>
+      <article class="acard rv"><h3>Valores</h3>
+        <ul>
+          <li><b>Compromiso.</b> Buscamos la excelencia en nuestros resultados, comprometidos con las expectativas y necesidades de nuestros clientes, forjando relaciones basadas en la confianza.</li>
+          <li><b>Pasión.</b> Nos apasiona lo que hacemos y nos esforzamos día a día por mejorar los productos y servicios que ofrecemos.</li>
+          <li><b>Innovación.</b> Buscamos continuamente nuevas formas de hacer mejor las cosas, con responsabilidad social y medioambiental.</li>
+        </ul>
+      </article>
+    </div>
+    <div class="about__extra rv">
+      <h3>También en obra y en planta</h3>
+      <ul>
+        <li>Soldeo supervisado en obra</li>
+        <li>Montaje en obra</li>
+        <li>Revestimiento interior en caucho, poliuretano y cerámico</li>
+        <li>Radiografiado las 24 horas en búnker especial</li>
+        <li>Avance de su proyecto en línea, 24/7</li>
+      </ul>
+    </div>
+    <details class="policy rv">
+      <summary>Política de Calidad</summary>
+      <div class="policy__body">
+        <p>En Proyectos Productos Soluciones (PPS) nos preocupamos por brindar un servicio de alta calidad a nuestros clientes, que nos permita cumplir con sus necesidades, expectativas y exigencias. Por eso desarrollamos e implementamos una Política de Calidad, asegurando que cada actividad se ejecute en forma correcta. Nos comprometemos a alcanzar la excelencia en calidad mediante el logro de los siguientes objetivos:</p>
+        <ol>
+          <li>Asegurar la calidad de nuestros procesos mediante el cumplimiento de los lineamientos de la ISO 9001:2015, realizando auditorías y evaluaciones que permitan detectar y corregir a tiempo las desviaciones y así proponer una mejora continua del sistema de gestión de calidad.</li>
+          <li>Garantizar el cumplimiento de los requisitos y demandas de nuestros clientes de acuerdo con las especificaciones, normas, códigos o estándares aplicables en el proyecto.</li>
+          <li>Mejorar continuamente la eficacia de nuestros procesos constructivos aplicando puntos de control de calidad y analizando resultados.</li>
+          <li>Promover el involucramiento, compromiso y responsabilidad del personal mediante capacitación y programas de desarrollo apropiados.</li>
+          <li>Fomentar la gestión del conocimiento y el manejo de la información que permita anticipar riesgos de calidad en los proyectos.</li>
+          <li>Establecer, documentar y mantener el modelo de gestión de calidad que considera a la calidad como parte del rol de producción.</li>
+        </ol>
+        <p>La Alta Dirección de PPS se hace responsable de la difusión de esta política, garantizando su comprensión y aplicación, a fin de lograr la satisfacción de sus clientes y de mejorar continuamente su competitividad.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
 <!-- ============ PREGUNTAS ============ -->
 <section class="faq" id="preguntas">
   <div class="wrap faq__grid">
     <div>
-      <p class="joint rv"><b>J-07</b>Preguntas frecuentes</p>
+      <p class="joint rv"><b>J-08</b>Preguntas frecuentes</p>
       <h2 class="h2 rv">Lo que nos preguntan antes de adjudicar.</h2>
       <button class="textlink rv" type="button" id="faq-chat">Haga su propia pregunta al asistente</button>
     </div>
@@ -257,7 +311,7 @@
 <section class="agenda" id="agenda">
   <div class="wrap agenda__grid">
     <div class="agenda__copy">
-      <p class="joint rv"><b>J-08</b>Agenda</p>
+      <p class="joint rv"><b>J-09</b>Agenda</p>
       <h2 class="mega mega--sm rv">Reúnase con quien responderá por su fabricación.</h2>
       <p class="lead rv">Treinta minutos por videollamada o en nuestra planta, de lunes a viernes entre las 9:00 y las 17:00, hora de Lima. Salimos de la reunión con los siguientes pasos definidos.</p>
       <ul class="people rv">
@@ -380,9 +434,9 @@
   </form>
 </aside>
 
-<script src="assets/js/config.js?v=4"></script>
-<script src="assets/js/data.js?v=4"></script>
-<script src="assets/js/main.js?v=4"></script>
-<script src="assets/js/chat.js?v=4"></script>
+<script src="assets/js/config.js?v=6"></script>
+<script src="assets/js/data.js?v=6"></script>
+<script src="assets/js/main.js?v=6"></script>
+<script src="assets/js/chat.js?v=6"></script>
 </body>
 </html>
