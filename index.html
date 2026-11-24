@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/img/hero-soldador.webp">
-<link rel="stylesheet" href="assets/css/styles.css?v=8">
+<link rel="stylesheet" href="assets/css/styles.css?v=9">
 </head>
 <body>
 <a class="skip" href="#main">Saltar al contenido</a>
@@ -43,6 +43,7 @@
     <a href="#planta">Planta</a>
     <a href="#nosotros">Nosotros</a>
   </div>
+  <a class="btn btn--inv btn--sm nav__inv" href="#invierta"><span>Participe en nuestros proyectos</span><i class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></i></a>
   <a class="btn btn--spark btn--sm nav__cta" href="#agenda"><span>Agendar reunión</span><i class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></i></a>
   <button class="nav__burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
 </nav>
@@ -53,6 +54,7 @@
   <a href="#proyectos">Proyectos</a>
   <a href="#planta">Planta</a>
     <a href="#nosotros">Nosotros</a>
+  <a href="#invierta">Invierta</a>
   <a href="#preguntas">Preguntas</a>
   <a class="menu__cta" href="#agenda">Agendar reunión</a>
 </div>
@@ -289,11 +291,48 @@
   </div>
 </section>
 
+<!-- ============ INVIERTA ============ -->
+<section class="inv" id="invierta">
+  <div class="wrap">
+    <div class="inv__head">
+      <p class="joint joint--ink rv"><b>J-08</b>Inversión · desde 2026</p>
+      <h2 class="inv__h rv">Su capital, en pedidos<br>que ya están <em>vendidos</em></h2>
+      <p class="inv__lead rv">Nuestros clientes en Perú y Latinoamérica ya nos dieron sus órdenes de compra. Usted aporta capital para fabricarlas y recibe una parte de la rentabilidad cuando el cliente paga.</p>
+      <div class="inv__def rv">
+        <span class="inv__defic" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i></span>
+        <p><b>¿Qué es tokenizar?</b> Es dividir un proyecto en partes iguales, llamadas tokens. Usted elige en qué proyecto participa y cuántas partes quiere. Cada parte le da derecho a su porción de la rentabilidad.</p>
+      </div>
+    </div>
+    <ol class="inv__flow rv">
+      <li class="inv__dot" aria-hidden="true"></li>
+      <li class="inv__st"><div class="inv__tile"><div class="inv__in"><svg class="inv__ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></div></div>
+        <div><b>Orden de compra</b><p>Un cliente importante confirma el pedido.</p></div></li>
+      <li class="inv__st"><div class="inv__tile"><div class="inv__in inv__in--spool"><img src="assets/img/spool-grande.webp" alt="" loading="lazy"><div class="inv__grid" id="inv-grid" aria-hidden="true"></div></div></div>
+        <div><b>Su aporte</b><p>Usted invierte en las partes que elija.</p></div></li>
+      <li class="inv__st"><div class="inv__tile"><div class="inv__in inv__in--weld"><img src="assets/img/soldadura-arco.webp" alt="" loading="lazy"><span class="inv__glow" aria-hidden="true"></span><span class="inv__arc" aria-hidden="true"></span><span id="inv-sparks" aria-hidden="true"></span></div></div>
+        <div><b>Fabricación</b><p>PPS fabrica, suelda y entrega el proyecto.</p></div></li>
+      <li class="inv__st"><div class="inv__tile"><div class="inv__in inv__in--ring">
+        <svg viewBox="0 0 110 110" aria-hidden="true"><defs><linearGradient id="inv-rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b86c4"/><stop offset="1" stop-color="#ff7a1a"/></linearGradient></defs>
+          <circle cx="55" cy="55" r="40" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="7"/>
+          <circle cx="55" cy="55" r="40" fill="none" stroke="url(#inv-rg)" stroke-width="1.6" stroke-dasharray="2 4"/>
+          <g class="inv__orb"><circle cx="55" cy="15" r="5" fill="#ff7a1a"/><circle cx="55" cy="15" r="9" fill="rgba(255,122,26,.2)"/></g></svg>
+        <div class="inv__n"><b>90</b><small>días</small></div></div></div>
+        <div><b>Cobro a 90 días</b><p>El cliente paga según su plazo.</p></div></li>
+      <li class="inv__st"><div class="inv__tile"><div class="inv__in inv__in--ret"><svg class="inv__ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/></svg></div></div>
+        <div><b>Su retorno</b><p>Recibe su capital más su rentabilidad.</p></div></li>
+    </ol>
+    <div class="inv__foot rv">
+      <a class="btn btn--dark" href="#agenda" data-inv><span>Quiero participar</span><i class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></i></a>
+      <p>La rentabilidad y las condiciones se informan en cada proyecto. Toda inversión tiene riesgos.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PREGUNTAS ============ -->
 <section class="faq" id="preguntas">
   <div class="wrap faq__grid">
     <div>
-      <p class="joint rv"><b>J-08</b>Preguntas frecuentes</p>
+      <p class="joint rv"><b>J-09</b>Preguntas frecuentes</p>
       <h2 class="h2 rv">Lo que nos preguntan antes de adjudicar.</h2>
       <button class="textlink rv" type="button" id="faq-chat">Haga su propia pregunta al asistente</button>
     </div>
@@ -311,7 +350,7 @@
 <section class="agenda" id="agenda">
   <div class="wrap agenda__grid">
     <div class="agenda__copy">
-      <p class="joint rv"><b>J-09</b>Agenda</p>
+      <p class="joint rv"><b>J-10</b>Agenda</p>
       <h2 class="mega mega--sm rv">Reúnase con quien responderá por su fabricación.</h2>
       <p class="lead rv">Treinta minutos por videollamada o en nuestra planta, de lunes a viernes entre las 9:00 y las 17:00, hora de Lima. Salimos de la reunión con los siguientes pasos definidos.</p>
       <ul class="people rv">
@@ -434,10 +473,10 @@
   </form>
 </aside>
 
-<script src="assets/js/config.js?v=8"></script>
-<script src="assets/js/data.js?v=8"></script>
-<script src="assets/js/main.js?v=8"></script>
-<script src="assets/js/chat.js?v=8"></script>
-<script src="assets/js/analytics.js?v=8"></script>
+<script src="assets/js/config.js?v=9"></script>
+<script src="assets/js/data.js?v=9"></script>
+<script src="assets/js/main.js?v=9"></script>
+<script src="assets/js/chat.js?v=9"></script>
+<script src="assets/js/analytics.js?v=9"></script>
 </body>
 </html>

@@ -469,3 +469,23 @@
 
   applyHeroMode();
 })();
+
+/* Invierta: partes del spool, chispas y aviso en el formulario */
+(function () {
+  var g = document.getElementById("inv-grid");
+  if (!g) return;
+  var you = [5, 6, 9, 10], k = 0, i;
+  for (i = 0; i < 16; i++) g.appendChild(document.createElement("i"));
+  var c = g.children, still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function paint(n) { for (var j = 0; j < 16; j++) c[j].className = you.indexOf(j) > -1 ? "you" : (j === n ? "on" : ""); }
+  paint(-1);
+  if (!still) setInterval(function () { paint(k % 16); k += 5; }, 450);
+  var sp = document.getElementById("inv-sparks");
+  for (i = 0; i < 9; i++) { var e = document.createElement("i"); e.className = "inv__sp"; e.style.setProperty("--a", (110 + i * 16) + "deg"); e.style.animationDelay = (i * .1) + "s"; sp.appendChild(e); }
+  document.querySelectorAll("[data-inv]").forEach(function (a) {
+    a.addEventListener("click", function () {
+      var t = document.querySelector('#booking textarea[name="detalle"]');
+      if (t && !t.value) t.value = "Quiero información para participar como inversionista en sus proyectos.";
+    });
+  });
+})();
